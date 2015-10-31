@@ -18,7 +18,7 @@ public class Teste {
         int b=34006;
          System.out.printf("%"+align+"d\n",a);
          System.out.printf("%"+align+"d\n",b);
-         System.out.println("---------------------------");
+         System.out.println("-------------------------");
 //        int res=a*b;
 //        while(b!=0){
 //            int t=b%10;            
