@@ -5,7 +5,6 @@
  */
 package Nivel_3;
 
-import java.math.BigDecimal;
 import java.util.Scanner;
 
 /**
@@ -17,34 +16,54 @@ public class _1120_RevisãoDeContrato {
     public static void main(String args[]) {
         Scanner teclado = new Scanner(System.in);
 
-        int d = -1;
-        long valor = -1;
+        String d = "";
+        String valor = "";
 
         while (true) {
-            d = teclado.nextInt();
-            valor = teclado.nextLong();
-            BigDecimal n = new BigDecimal(valor);
-            if (d == 0 && valor == 0) {
+            d = teclado.next();
+            valor = teclado.next();
+
+            if (d.contentEquals("0") && valor.contentEquals("0")) {
                 break;
             } else {
-                long numero = contrato(d, n);
-                System.out.println(numero);
+                System.out.println(contrato(d, valor));
             }
         }
     }
 
-    static long contrato(int d, BigDecimal n) {
-        long numero = 0;
-        char c = Character.forDigit(d, 10);
-        String cadeiaNumerica = String.valueOf(n);
-        String cadeiaNumericaNova = "";
+    static StringBuilder contrato(String c, String n) {
 
-        for (int i = 0; i < cadeiaNumerica.length(); i++) {
-            if (cadeiaNumerica.charAt(i) != (c)) {
-                cadeiaNumericaNova += cadeiaNumerica.charAt(i);
+        StringBuilder cadeiaNumericaNova = new StringBuilder();
+        cadeiaNumericaNova.append("");
+
+        for (int i = 0; i < n.length(); i++) {
+            if (n.charAt(i) != c.charAt(0)) {
+                cadeiaNumericaNova.append(n.charAt(i));
             }
         }
 
-        return numero = Long.parseLong(cadeiaNumericaNova);
+        boolean ehZero = true;
+        boolean zeroEsquerda = true;
+        for (int i = 0; i < cadeiaNumericaNova.length(); i++) {
+            if (cadeiaNumericaNova.charAt(i) != '0') {
+                for(int j = i-1; j>0;j--){
+                    if(cadeiaNumericaNova.charAt(j) != '0'){
+                        zeroEsquerda = false;
+                        break;
+                    }
+                }
+                ehZero = false;
+                if(zeroEsquerda){
+                    cadeiaNumericaNova.delete(0, i);
+                }
+                break;
+            }
+        }
+
+        if (ehZero) {
+            return cadeiaNumericaNova.replace(0, cadeiaNumericaNova.length(), "0");
+        } else {
+            return cadeiaNumericaNova;
+        }
     }
 }
