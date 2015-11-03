@@ -21,15 +21,15 @@ public class _1030_LendaFlaviousJosephus {
         //f(1, k) = 1 caso base
         //f(n, k) = (f(n - 1, k) + k -1) % n + 1
         int nc = in.nextInt();
-        int n, k, vivo;
+        long n, k, vivo;
         for (int i = 0; i < nc; i++) {
             n = in.nextInt();
             k = in.nextInt();
-            System.out.printf("Case %d: %f\n", i + 1, (int)josephus(n, k));
+            System.out.printf("Case %d: %d\n", i + 1, josephus(n, k));
         }
     }
 
-    static double josephus(int n, int k) {
+    static long josephus(long n, long k) {
         if (n == 1) {
             return 1;
         }
